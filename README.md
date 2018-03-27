@@ -37,7 +37,7 @@ class HelloWorldConnectedComponent extends Connect(Input) {
 
     // All mapped properties are available with type safety
     someMethod() {
-        alert(props.hello + ', ' + props.world);
+        alert(this.props.hello + ', ' + this.props.world);
     }
 }
 ```
@@ -103,7 +103,7 @@ class HelloWorldConnectedComponent extends Connect(Input, HelloWorldState) {
 
     // All mapped properties are available with type safety
     someMethod() {
-        alert(props.hello + ', ' + props.world);
+        alert(this.props.hello + ', ' + this.props.world);
     }
 }
 ```

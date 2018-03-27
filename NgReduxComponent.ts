@@ -1,4 +1,4 @@
-import { Store } from 'redux';
+import { Store, Unsubscribe } from 'redux';
 import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { InputMapper } from './InputMapper';
 
@@ -6,7 +6,7 @@ export abstract class NgReduxComponent<A, I extends InputMapper<A>, M> implement
     static store: Store<any>;
     
     public props: I & M = <any> {};
-    private unsubscribeStore: Function;
+    private unsubscribeStore: Unsubscribe;
     
     constructor(
         private inputMapper: new(...args: any[]) => I,
@@ -35,7 +35,7 @@ export abstract class NgReduxComponent<A, I extends InputMapper<A>, M> implement
     }
 
     onStoreChange(store: Store<A>) {
-        this.props = Object.assign(
+        this.props = (Object as any).assign(
             {},
             new this.inputMapper(store.getState()),
             { state: null }
