@@ -16,8 +16,8 @@ class AppState {
 
 // In the component you want to connect, start by declaring which properties you want (this.state is automagically set by re-angular-dux)
 class Input extends InputMapper<AppState> {
-    hello = this.state.hello;
-    world = this.state.world;
+    hello = this.state.helloWorldState.hello;
+    world = this.state.helloWorldState.world;
 }
 
 
@@ -52,3 +52,45 @@ NgReduxComponent.store = store;
 ```
 
 And that's it! Your angular components can now connect to Redux. But it gets better still. Read on for more good stuff.
+
+
+## State mixins
+So say you have your store set up in a way, that a subset of whatever state you have matches the needs of one of your connected components. Enter state mixins! Let's start with the example from before:
+
+```typescript
+class HelloWorldState {
+    hello = "Hello";
+    world = "World";
+}
+class AppState {
+    helloWorldState = new HelloWorldState();
+}
+
+// Now instead of selecting invidiual properties from the state
+// lets mixin the HelloWorldState
+class Input extends InputMapper<AppState> {
+    constructor(state: AppState) {
+        super(state, state.helloWorldState);
+    }
+}
+
+@Component({
+    selector: 'hello-world-connected-component',
+    template: `
+        {{ props.hello }}, {{ props.world }}!
+    `
+})
+// When we connect, let's tell re-angular-dux which state we're mixin in, for type safety
+class HelloWorldConnectedComponent extends Connect(Input, HelloWorldState) { 
+    constructor(changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef)
+    }
+
+    // All mapped properties are available with type safety
+    someMethod() {
+        alert(props.hello + ', ' + props.world);
+    }
+}
+```
+
+So now even large complex state tree's can be mixed in, without having to change a lot of code. Note that you can still pick out properties from other parts of the store.
