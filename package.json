@@ -1,0 +1,29 @@
+{
+  "name": "re-angular-dux",
+  "version": "1.0.0",
+  "description": "Redux connector for angular based on react props",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nahilas/re-angular-dux.git"
+  },
+  "keywords": [
+    "redux",
+    "angular",
+    "connect"
+  ],
+  "author": "Mads Kølbæk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nahilas/re-angular-dux/issues"
+  },
+  "homepage": "https://github.com/Nahilas/re-angular-dux#readme",
+  "dependencies": {
+    "@angular/core": "^5.2.9",
+    "immutable": "^3.8.2",
+    "redux": "^3.7.2"
+  }
+}
