@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 import { OnDestroy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { InputMapper } from './InputMapper';
 import { NgReduxComponent } from './NgReduxComponent';
@@ -20,7 +19,7 @@ const overrideMethod = (name: string, obj: any, overrideWith: () => void) => {
 };
 
 export function Connect<A, 
-                                I extends InputMapper<A>, M extends Map<string, any>>(
+                                I extends InputMapper<A>, M>(
                                     input: new(...args: any[]) => I,
                                     mixin?: new(...args: any[]) => M
                                     ): new(changeDetector: ChangeDetectorRef) => NgReduxComponent<A, I, M> {
@@ -36,7 +35,7 @@ export function Connect<A,
 
 // Extends ConnectConstructor and adds a mandatory reset command that's called on ngOnInit
 export function ConnectWithReset<A,
-    I extends InputMapper<A>, M extends Map<string, any>, P>(
+    I extends InputMapper<A>, M, P>(
     input: new (...args: any[]) => I,
     mixin?: new (...args: any[]) => M,
     resetOnDestroy = false
