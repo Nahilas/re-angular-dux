@@ -6,6 +6,8 @@ There are several great Redux connectors for Angular 2+ out there, and most of t
 You basically connect the constructor of your component with the Redux store, and define which part of the store you're interested in with the InputMapper and off you go. All of this is typesafe. See an example below:
 
 ```typescript
+import { Connect, InputMapper } from 're-angular-dux'
+
 // Assuming we have a store class called AppState which looks like this
 class AppState {
     helloWorldState = {
@@ -44,6 +46,9 @@ class HelloWorldConnectedComponent extends Connect(Input) {
 Quite right! Re-angular-dux is very easy to set up, since it sidesteps angulars dependency injector. This might get changed at a later date, but for now the store reference is just a static value that needs to be set on NgReduxComponent. A complete setup example below:
 
 ```typescript
+import { createStore } from 'redux'
+import { NgReduxComponent } from 're-angular-dux'
+
 // Setup your redux store with reducer, default state and middleware
 const store = createStore<AppState>();
 
@@ -66,6 +71,8 @@ And that's it! Your angular components can now connect to Redux. If you're using
 So say you have your store set up in a way, that a subset of whatever state you have matches the needs of one of your connected components. Enter state mixins! Let's start with the example from before:
 
 ```typescript
+import { Connect, InputMapper } from 're-angular-dux'
+
 class HelloWorldState {
     hello = "Hello";
     world = "World";
