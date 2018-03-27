@@ -1,6 +1,6 @@
 {
   "name": "re-angular-dux",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Redux connector for angular based on react props",
   "main": "index.ts",
   "scripts": {

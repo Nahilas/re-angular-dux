@@ -51,8 +51,16 @@ const store = createStore<AppState>();
 NgReduxComponent.store = store;
 ```
 
-And that's it! Your angular components can now connect to Redux. But it gets better still. Read on for more good stuff.
+And that's it! Your angular components can now connect to Redux. If you're using redux and re-angular-dux everywhere in your application, I recommend telling angular to use the push change detection strategy. Since we're manually telling angular to update, we can tell it to stop listening for changes everywhere. Do this in your outermost component.
 
+```typescript
+    @Component({
+        ...
+        changeDetection: ChangeDetectionStrategy.OnPush,
+        ...
+    })
+    class MyAppComponent {}
+```
 
 ## State mixins
 So say you have your store set up in a way, that a subset of whatever state you have matches the needs of one of your connected components. Enter state mixins! Let's start with the example from before:
@@ -94,3 +102,13 @@ class HelloWorldConnectedComponent extends Connect(Input, HelloWorldState) {
 ```
 
 So now even large complex state trees can be mixed in, without having to change a lot of code. Note that you can still pick out properties from other parts of the store.
+
+
+## A word on ngOnChanges
+Because of the way re-angular-dux works right now, ngOnChanges does not get fired on connected components. It'll still work on any components in the tree rendered by a connected component, just not the one with the Connect() directly attached to it's constructor... Which leads us to...
+
+## TODO
+Stuff that would be nice to have in this package:
+* ngOnChanges support.
+* Test suite with Travis integration
+
