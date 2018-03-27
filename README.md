@@ -80,7 +80,7 @@ class Input extends InputMapper<AppState> {
         {{ props.hello }}, {{ props.world }}!
     `
 })
-// When we connect, let's tell re-angular-dux which state we're mixin in, for type safety
+// When we connect, let's tell re-angular-dux which state we're mixin in, for type safety's sake
 class HelloWorldConnectedComponent extends Connect(Input, HelloWorldState) { 
     constructor(changeDetectorRef: ChangeDetectorRef) {
         super(changeDetectorRef)
@@ -93,4 +93,4 @@ class HelloWorldConnectedComponent extends Connect(Input, HelloWorldState) {
 }
 ```
 
-So now even large complex state tree's can be mixed in, without having to change a lot of code. Note that you can still pick out properties from other parts of the store.
+So now even large complex state trees can be mixed in, without having to change a lot of code. Note that you can still pick out properties from other parts of the store.

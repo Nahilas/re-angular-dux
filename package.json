@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/Nahilas/re-angular-dux#readme",
   "dependencies": {
-    "@angular/core": "^5.2.9",
-    "immutable": "^3.8.2",
-    "redux": "^3.7.2"
+    "@angular/core": "^2",
+    "immutable": "^3",
+    "redux": "^3"
   }
 }
